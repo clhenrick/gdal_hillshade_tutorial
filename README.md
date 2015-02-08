@@ -11,33 +11,35 @@ Participants will learn how to work with Digital Elevation Model data with GDAL 
 ## The Tutorial
 
 ### Step 1: Download data:
+1. In your project folder do `mkdir one-arc-second`, and `cd` to it.
 
-Using the `w-get` utility (available on linux or via homebrew on a mac), put the following in a file called url_list.txt:
+2. Using the `w-get` utility (available on linux or via homebrew on a mac), put the following in a file called url_list.txt:
 
-```
-ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/13/GridFloat/n37w119.zip
-ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/13/GridFloat/n38w119.zip
-ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/13/GridFloat/n37w120.zip
-ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/13/GridFloat/n38w120.zip
-```
+	```
+	ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/1/GridFloat/n37w119.zip
+	ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/1/GridFloat/n38w119.zip
+	ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/1/GridFloat/n37w120.zip
+	ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/1/GridFloat/n38w120.zip
+	```
 
-Then do `wget -i url_list.txt` and go grab a beer or coffee. 
+3. Do `wget -i url_list.txt`. Go grab a beer or coffee. 
 
-When the files have finished downloading unzip them by doing 'unzip *.zip'
+4. When the files have finished downloading unzip them by doing `open *.zip`.
 
-**note:** This data comes from the USGS National Elevation Dataset which is available for download via the [National Map Viewer.](http://viewer.nationalmap.gov/viewer/)
+**FYI:** This data comes from the USGS National Elevation Dataset which is available for download via the [National Map Viewer.](http://viewer.nationalmap.gov/viewer/)
 
 ### Step 2: Process DEM data
 
+First `cd` up one directory, make a new directory called `processed_data`.
 
 1. Build a VRT file with GDAL:
 
 	```
-	gdalbuildvrt kings_canyon.vrt \
-	        ../one-third-arc-second/n37w119/floatn37w119_13.flt \
-	        ../one-third-arc-second/n37w120/floatn37w120_13.flt \
-	        ../one-third-arc-second/n38w119/floatn38w119_13.flt \
-	        ../one-third-arc-second/n38w120/floatn38w120_13.flt         
+    gdalbuildvrt kings_canyon.vrt \
+            ../one-arc-second/n37w119/floatn37w119_1.flt \
+            ../one-arc-second/n37w120/floatn37w120_1.flt \
+            ../one-arc-second/n38w119/floatn38w119_1.flt \
+            ../one-arc-second/n38w120/floatn38w120_1.flt   
 	```
 
 2. Create a GeoTiff from the VRT file:  
@@ -119,15 +121,13 @@ Then set the opacity for the top two layers to 50-55%.
 ### Resampling Terrain Data
 If we want our hillshade to be less detailed we can resample our DEM data. Basically all we are doing is making the file a smaller size in pixel measurements (not the actual area it represents) so that each pixel will represent a larger square meter area. This is similar to reducing and resampling the size of a regular image in Photoshop or Gimp.
 
-`gdalwarp -ts 5000 0 -r bilinear kings_canyon_2228.tif kings_canyon_2228_rs.tif`
+`gdalwarp -ts 3000 0 -r bilinear kings_canyon_2228.tif kings_canyon_2228_rs.tif`
 
 - **note** leaving either the width or height as 0 will let GDAL guess the other dimension based on the input file size's aspect ratio.
 
-Using `gdalinfo` we can see the resolution of our resampled data. Check the `Pixel Size` value in the output when doing:
+Using `gdalinfo` we can see the resolution of our resampled data. Check the `Pixel Size` value in the output after doing: `gdalinfo kings_canyon_2228_rs.tif`. You'll see that it's larger than the original file.
 
-`gdalinfo kings_canyon_2228_rs.tif`
-
-Then do the above steps to generate hillshade, slopeshade, etc. with the resampled data.
+You can then do the above steps to generate hillshade, slopeshade, etc. with the resampled data.
 
 
 ## Resources:
