@@ -108,7 +108,7 @@ Open the files in the software of your choice and layer them in the following or
 
 Then set the opacity for the top two layers to 50-55%. 
 
-- In Tile Mill you can also use the multiply effect which looks nice. If working in Tile Mill it's best to have your data projected in EPSG:3857. The following CartoCSS gives the data a nice look and you can tweak it by adjusting the opacity value and comp-op parameter:
+- In Tile Mill you can also use the `comp-op:multiply` effect which looks nice. If working in Tile Mill it's best to have your data projected in `EPSG:3785`. The following `CartoCSS` gives the data a nice look and you can tweak it by adjusting the opacity value and comp-op parameter:
 
 	```
 	Map {
@@ -133,7 +133,7 @@ Then set the opacity for the top two layers to 50-55%.
 	```
 
 
-- You could also composite these three files in Photoshop, though you'll have to re-georeference it afterward as Photoshop will strip the meta-data that contains the georeference from the original files. To do this use `gdalinfo` to find the extent of one of the original files and then use `gdal_translate` utility like:
+- You could also composite these three files in Photoshop, though you'll have to georeference the composited file afterward as Photoshop will strip the data that contains the georeference from the original files. To do this use `gdalinfo` to find the extent of one of the original files and then use `gdal_translate` utility like:
 
 	```
 	gdal_translate -of GTiff \
