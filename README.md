@@ -13,9 +13,13 @@ Participants will learn how to work with Digital Elevation Model data and use GD
 ## The Tutorial
 
 ### Step 1: Download data:
-1. In your project folder do `mkdir one-arc-second`, and `cd` to it.
+1. Make a new folder for this tutorial. Call it something like `gdal_hillshade_tutorial`.   
+    - Then open up your terminal and `cd` to that folder by doing:   
+    `cd /Users/username/gdal_hillshade_tutorial/`. 
+    
+    - Once you're in your project folder make another directory by doing `mkdir one-arc-second`, and then `cd` to it by doing `cd one-arc-second`.
 
-2. Using the `w-get` utility (available on linux or via homebrew on a mac), put the following in a file called url_list.txt:
+2.  Put the following text in a file called url_list.txt:
 
 	```
 	ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/1/GridFloat/n37w119.zip
@@ -24,7 +28,8 @@ Participants will learn how to work with Digital Elevation Model data and use GD
 	ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/NED/1/GridFloat/n38w120.zip
 	```
 
-3. Do `wget -i url_list.txt`. Go grab a beer or coffee. 
+3. Then using the `w-get` utility (available on Linux or via [Homebrew](http://brew.sh/) on a Mac), do:  
+  `wget -i url_list.txt`. Go grab a beer or coffee. 
 
 4. When the files have finished downloading unzip them by doing `open *.zip`.
 
@@ -32,7 +37,7 @@ Participants will learn how to work with Digital Elevation Model data and use GD
 
 ### Step 2: Process DEM data
 
-First `cd` up one directory, make a new directory called `processed_data`.
+First `cd` up one directory, make a new directory called `processed_data` and `cd` to it.
 
 1. Build a VRT file with GDAL:
 
