@@ -8,7 +8,13 @@ Winter 2015
 
 ## Description
 
-Participants will learn how to work with Digital Elevation Model data and use GDAL to generate a shaded relief / hillshade for the Kings Canyon National Park area, in the southern Sierra Nevada mountain range, California. The commands in this tutorial are meant to be run in the Bash shell on Mac OS X or a Linux OS but these processes can also be accomplished using QGIS.
+Participants will learn how to work with [Digital Elevation Model](http://en.wikipedia.org/wiki/Digital_elevation_model) data and use [GDAL](http://en.wikipedia.org/wiki/GDAL) to generate a shaded relief / hillshade for the Kings Canyon National Park area, in the southern Sierra Nevada mountain range, California. The commands in this tutorial are meant to be run in the Bash shell on Mac OS X or a Linux OS but these processes can also be accomplished using [QGIS](http://www2.qgis.org/en/site/).
+
+## Assumptions
+
+Ths tutorial assumes you have GDAL installed and that it is accessible from a [Command Line Interface](http://en.wikipedia.org/wiki/Command-line_interface) such as the [Terminal App](http://guides.macrumors.com/Terminal). Some familiarity with the CLI is beneficial but not required.
+
+MapBox has a [good tutorial on setting up GDAL](https://www.mapbox.com/tilemill/docs/guides/gdal/) if you need to.
 
 ## The Tutorial
 
