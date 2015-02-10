@@ -8,13 +8,13 @@ Winter 2015
 
 ## Description
 
-Participants will learn how to work with [Digital Elevation Model](http://en.wikipedia.org/wiki/Digital_elevation_model) data and use [GDAL](http://en.wikipedia.org/wiki/GDAL) to generate a shaded relief / hillshade for the Kings Canyon National Park area, in the southern Sierra Nevada mountain range, California. The commands in this tutorial are meant to be run in the Bash shell on Mac OS X or a Linux OS but these processes can also be accomplished using [QGIS](http://www2.qgis.org/en/site/).
+Participants will learn how to work with [Digital Elevation Model](http://en.wikipedia.org/wiki/Digital_elevation_model) data and use [GDAL](http://en.wikipedia.org/wiki/GDAL) to generate a [Shaded Relief / Hillshade](http://en.wikipedia.org/wiki/Terrain_cartography) for the Kings Canyon National Park area, in the southern Sierra Nevada mountain range, California. The commands in this tutorial are meant to be run in the Bash shell on Mac OS X or a Linux OS but these processes can also be accomplished using [QGIS](http://www2.qgis.org/en/site/).
 
 ## Assumptions
 
-Ths tutorial assumes you have GDAL installed and that it is accessible from a [Command Line Interface](http://en.wikipedia.org/wiki/Command-line_interface) such as the [Terminal App](http://guides.macrumors.com/Terminal). Some familiarity with the CLI is beneficial but not required.
+Ths tutorial assumes you have GDAL installed and that it is accessible from a [Command Line Interface](http://en.wikipedia.org/wiki/Command-line_interface) such as the [Terminal App](http://guides.macrumors.com/Terminal). Some familiarity with the Unix CLI is beneficial but not required.
 
-MapBox has a [good tutorial on setting up GDAL](https://www.mapbox.com/tilemill/docs/guides/gdal/) if you need to.
+MapBox has a [good tutorial on setting up GDAL](https://www.mapbox.com/tilemill/docs/guides/gdal/) if you need to do so.
 
 ## The Tutorial
 
@@ -117,9 +117,9 @@ Open the files in the software of your choice and layer them in the following or
 2. Slope Shade
 3. Hillshade
 
-Then set the opacity for the top two layers to 50-55%. 
+Then set the opacity for the top two layers to 50-80%. Try experimenting with this.
 
-- In Tile Mill you can also use the `comp-op:multiply` effect which looks nice. If working in Tile Mill it's best to have your data projected in `EPSG:3785`. The following `CartoCSS` gives the data a nice look and you can tweak it by adjusting the opacity value and comp-op parameter:
+- In Tile Mill you can also use the `comp-op: multiply` effect which affects the way the layers are blended. If working in Tile Mill it's best to have your data projected to `EPSG:3785`. The following `CartoCSS` blends data well and you can tweak it by adjusting the opacity value and comp-op parameter:
 
 	```
 	Map {
@@ -144,7 +144,7 @@ Then set the opacity for the top two layers to 50-55%.
 	```
 
 
-- You could also composite these three files in Photoshop, though you'll have to georeference the composited file afterward as Photoshop will strip the data that contains the georeference from the original files. To do this use `gdalinfo` to find the extent of one of the original files and then use `gdal_translate` utility like:
+- You could also composite these three files in Photoshop, though you'll have to georeference the composited file afterward as Photoshop won't transfer the data that contains the georeference information from the original files. To do this use `gdalinfo` to find the extent of one of the original files and then use `gdal_translate` utility like:
 
 	```
 	gdal_translate -of GTiff \
@@ -171,7 +171,7 @@ Located inside the resources directory.
 
 - Tom Pattersons' web map shaded relief guide.
 - ESRI's vertical exaggeration chart.
-- Bash shell script to automate GDAL hillshade process. Takes a DEM as an argument when running.
+- Make-hillshade.sh is a [bash shell script](http://en.wikibooks.org/wiki/Bash_Shell_Scripting) to automate GDAL hillshade process. Takes the file name for a DEM as an argument when running, eg: `./make-hillshade.sh my-dem-data.tif`
 
 ## Other helpful links
 - [Shadedrelief.com](http://www.shadedrelief.com/)
