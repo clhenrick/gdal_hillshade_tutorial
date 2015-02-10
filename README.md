@@ -104,7 +104,7 @@ Then generate the color-relief:
 Generate a slope:  
 `gdaldem slope kings_canyon_2228.tif slope.tif`
 
-Make a color-slope.txt file that will be used to generate the slope shade:
+Make a color-slope.txt file that will be used to generate the slope shade:  
 `touch color-slope.txt && printf '%s\n%s\n' '0 255 255 255' '90 0 0 0' >> color-slope.txt`
 
 Finally make the slope shade:  
